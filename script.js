@@ -22,6 +22,7 @@ document.querySelector('#search-btn').onclick = (e) => {
 
 // toggell class active untuk search form 
 const shoppingCart = document.querySelector('.shopping-cart');
+
 document.querySelector('#shopping-cart-btn').onclick = (e) => {
   shoppingCart.classList.toggle('active');
   e.preventDefault()
@@ -32,16 +33,15 @@ document.querySelector('#shopping-cart-btn').onclick = (e) => {
 
 
 
-
 // membuat const hamburger dengan id=hamburger-meu.
 // lalu buat addevent ketika click function event maka/jika klik di luar hamburger menu dan navbarnav maka akan remove class active
 
 // klik di luat elemen
 const hm = document.querySelector("#hamburger-menu");
-const sb = document.querySelector('#search-btn');
-const sc = document.querySelector('#shopping-cart-btn');
+const sb = document.querySelector("#search-btn");
+const sc = document.querySelector("#shopping-cart-btn");
 
-document.addEventListener("clik", function (e) {
+document.addEventListener("click", function (e) {
   if (!hm.contains(e.target) && !navbarNav.contains(e.target)) {
     navbarNav.classList.remove("active");
   }
@@ -49,10 +49,12 @@ document.addEventListener("clik", function (e) {
   if (!sb.contains(e.target) && !searchform.contains(e.target)) {
     searchform.classList.remove("active");
   }
+
   if (!sc.contains(e.target) && !shoppingCart.contains(e.target)) {
-    searchform.classList.remove("active");
+    shoppingCart.classList.remove("active");
   }
 });
+
 
 // modal box 
 const itemdetailmodal = document.querySelector('#item-detail-modal');
