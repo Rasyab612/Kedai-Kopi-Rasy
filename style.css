@@ -287,15 +287,6 @@ body {
 
 }
 
-.hero .mask-container{
-    position: absolute;
-    /* background-color: salmon; */
-    inset: 0;
-    mask-image: url(img/coffeebgblack.jpg);
-    mask-repeat: no-repeat;
-   mask-size: cover;
-   mask-position: center;
-}
 
 
 .hero .content {
