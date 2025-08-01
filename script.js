@@ -20,6 +20,13 @@ document.querySelector('#search-btn').onclick = (e) => {
 
 }
 
+// toggell class active untuk search form 
+const shoppingCart = document.querySelector('.shopping-cart');
+document.querySelector('#shopping-cart-btn').onclick = (e) => {
+  shoppingCart.classList.toggle('active');
+  e.preventDefault()
+}
+
 
 // klik di luar side bar untuk menghilangkan nav
 
@@ -32,8 +39,9 @@ document.querySelector('#search-btn').onclick = (e) => {
 // klik di luat elemen
 const hm = document.querySelector("#hamburger-menu");
 const sb = document.querySelector('#search-btn');
+const sc = document.querySelector('#shopping-cart-btn');
 
-document.addEventListener("click", function (e) {
+document.addEventListener("clik", function (e) {
   if (!hm.contains(e.target) && !navbarNav.contains(e.target)) {
     navbarNav.classList.remove("active");
   }
@@ -41,5 +49,35 @@ document.addEventListener("click", function (e) {
   if (!sb.contains(e.target) && !searchform.contains(e.target)) {
     searchform.classList.remove("active");
   }
+  if (!sc.contains(e.target) && !shoppingCart.contains(e.target)) {
+    searchform.classList.remove("active");
+  }
 });
 
+// modal box 
+const itemdetailmodal = document.querySelector('#item-detail-modal');
+const itemdetailbtn = document.querySelectorAll('.item-detail-btn');
+
+// supaya semua item-detail-btn berfungsi
+itemdetailbtn.forEach((btn) => {
+
+  btn.onclick = (e) => {
+  itemdetailmodal.style.display = 'flex' ;
+  e.preventDefault()
+  };
+});
+
+
+// klik tombol close modal 
+document.querySelector('.modal .close-icon').onclick = (e) => {
+  itemdetailmodal.style.display = 'none' ;
+  e.preventDefault()
+}
+
+// klik di luar moda
+// ketika klik dimana pu pasti hilang kecuali modal-container
+window.onclick = (e) => {
+  if(e.target === itemdetailmodal) {
+    itemdetailmodal.style.display = 'none'
+  }
+}
