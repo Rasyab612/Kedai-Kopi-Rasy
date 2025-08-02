@@ -74,6 +74,48 @@
     });
 
 
+    // form validation
+    const checkoutbtn = document.querySelector('.checkout-btn');
+    checkoutbtn.disabled = true;
+
+    const form = document.querySelector('#checkoutform');
+
+    form.addEventListener('keyup', function() {
+        for (let i = 0; i < form.elements.length; i++){
+            if (form.elements[i].value.length !== 0) {
+                checkoutbtn.classList.remove('disabled');
+                checkoutbtn.classList.add('disabled');
+            } else {
+                return false;
+            }
+        }
+        checkoutbtn.disabled = false;
+        checkoutbtn.classList.remove('disabled');
+    });
+
+    // kirim data ketika tombol di click
+    checkoutbtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = new URLSearchParams(formData);
+        const objData = Object.fromEntries(data);
+        const massage = formatMassage(objData);
+        window.open('https://wa.me/62882008743163?text=' + encodeURIComponent(massage));
+    });
+
+    // format pesan Whastapp
+    const formatMassage = (obj) => {
+        return `Data Customer
+        Nama: ${obj.name}
+        Email: ${obj.email}
+        No HP: ${obj.phone}
+    Data Persanan
+        ${JSON.parse(obj.items).map((item) => `${item.name} (${item.quantity} x ${rupiah(item.total)}) /n`)}
+        TOTAL: ${rupiah(obj.total)}
+        Terima kasih.`;
+    };
+
+
     // rupiah intl.numberformat
     const rupiah = (number) => {
         return new Intl.NumberFormat('id-ID', {
